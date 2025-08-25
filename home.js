@@ -53,25 +53,25 @@ document.getElementById('add-money-btn').addEventListener('click', function(e){
 
 
 document.getElementById('withdraw-btn').addEventListener('click', function(e){
-    e.preventDefault()
+    e.preventDefault();
    
 
-    const accountNumber = document.getElementById('agent-number').value
-    const amount = parseInt(document.getElementById('withdraw-number').value)
-    const addPin = parseInt(document.getElementById('withdraw-pin').value)
+    const accountNumber = document.getElementById('agent-number').value;
+    const amount = parseInt(document.getElementById('withdraw-number').value);
+    const addPin = parseInt(document.getElementById('withdraw-pin').value);
 
     const availableBalance = parseInt(document.getElementById('available-balance').innerText);
 
     if(accountNumber.length < 11){
-        alert('Enter Your valid Account Number')
-        return
+        alert('Enter Your valid Account Number');
+        return;
     }
     if(addPin !== validPin){
-        alert("Enter Valid Pin Number")
-        return
+        alert("Enter Valid Pin Number");
+        return;
     }
 
-    const totalNewAvailableBalance = availableBalance - amount
-    document.getElementById('available-balance').innerText = totalNewAvailableBalance
+    const totalNewAvailableBalance = availableBalance - amount;
+    document.getElementById('available-balance').innerText = totalNewAvailableBalance;
     
 })
