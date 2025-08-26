@@ -1,3 +1,7 @@
+const validPin = 11992288;
+const transactionsData = [] 
+
+
 function handleToggle(id) {
   const forms = document.getElementsByClassName("form");
 
@@ -7,69 +11,59 @@ function handleToggle(id) {
   document.getElementById(id).style.display = "block";
 }
 
-document.getElementById("add-button").addEventListener("click", function (e) {
-  handleToggle("add-money-parent");
-
-  const formButtons = document.getElementsByClassName("form-btn");
-  for (const btn of formButtons) {
-    btn.classList.remove("border-[#0874f2]", "bg-[#0874f20d]");
-    btn.classList.add("border-gray-300");
+function handleBtnToggle(id){
+    const formButtons = document.getElementsByClassName('form-btn')
+  for(const btn of formButtons){
+    btn.classList.remove("border-[#0874f2]", "bg-[#0874f20d]")
+    btn.classList.add('border-gray-300')
   }
-  document
+  document.getElementById(id).classList.remove("border-gray-300", "bg-[#0874f20d]")
+  document.getElementById(id).classList.add("border-[#0874f2]", "bg-[#0874f20d]")
+}
+
+
+document
     .getElementById("add-button")
-    .classList.remove("border-gray-300", "bg-[#0874f20d]");
-  document
-    .getElementById("add-button")
-    .classList.add("border-[#0874f2]", "bg-[#0874f20d]");
+    .addEventListener("click", function (e) {
+  handleToggle("add-money-parent");
+  handleBtnToggle('add-button')
+
+
 });
 document
   .getElementById("cashout-button")
   .addEventListener("click", function (e) {
     handleToggle("cashout-money");
-    const formButtons = document.getElementsByClassName("form-btn");
-    for (const btn of formButtons) {
-      btn.classList.remove("border-[#0874f2]", "bg-[#0874f20d]");
-      btn.classList.add("border-gray-300");
-    }
-    document
-      .getElementById("cashout-button")
-      .classList.remove("border-gray-300", "bg-[#0874f20d]");
-    document
-      .getElementById("cashout-button")
-      .classList.add("border-[#0874f2]", "bg-[#0874f20d]");
+    handleBtnToggle('cashout-button')
+    
   });
 document
   .getElementById("transfer-button")
   .addEventListener("click", function (e) {
     handleToggle("transfer-money-parent");
-    const formButtons = document.getElementsByClassName("form-btn");
-    for (const btn of formButtons) {
-      btn.classList.remove("border-[#0874f2]", "bg-[#0874f20d]");
-      btn.classList.add("border-gray-300");
-    }
-    document
-      .getElementById("transfer-button")
-      .classList.remove("border-gray-300", "bg-[#0874f20d]");
-    document
-      .getElementById("transfer-button")
-      .classList.add("border-[#0874f2]", "bg-[#0874f20d]");
+    handleBtnToggle('transfer-button')
+    
   });
-document.getElementById("get-bonus").addEventListener("click", function (e) {
+document
+.getElementById("get-bonus")
+.addEventListener("click", function (e) {
   handleToggle("get-bonus-parent");
-  const formButtons = document.getElementsByClassName("form-btn");
-  for (const btn of formButtons) {
-    btn.classList.remove("border-[#0874f2]", "bg-[#0874f20d]");
-    btn.classList.add("border-gray-300");
-  }
-  document
-    .getElementById("get-bonus")
-    .classList.remove("border-gray-300", "bg-[#0874f20d]");
-  document
-    .getElementById("get-bonus")
-    .classList.add("border-[#0874f2]", "bg-[#0874f20d]");
+  handleBtnToggle("get-bonus");
 });
 
-const validPin = 11992288;
+document
+.getElementById("bill-button")
+.addEventListener("click", function (e) {
+  handleToggle("pay-bill-parent");
+  handleBtnToggle("bill-button");
+});
+document
+.getElementById("transactions-button")
+.addEventListener("click", function (e) {
+  handleToggle("transactions-parent");
+  handleBtnToggle("transactions-button");
+});
+
 
 function getInputValueNumber(id) {
   const inputField = parseInt(document.getElementById(id).value);
@@ -102,6 +96,10 @@ document
     const accountNumber = getInputValue("accounts-number");
     const addPin = getInputValueNumber("add-pin");
     const amount = getInputValueNumber("add-amount");
+    if(amount <= 0){
+      alert('Invalid Amount')
+      return
+    }
     const availableBalance = toGetInnerText("available-balance");
 
     if (accountNumber.length !== 11) {
@@ -117,7 +115,24 @@ document
     const totalNewAvailableBalance = amount + availableBalance;
 
     toSetInnerText(totalNewAvailableBalance);
+    const data = {
+        name: "Add Money",
+        date: new Date().toLocaleTimeString()
+    }
+    transactionsData.push(data)
+    console.log(transactionsData)
+
+
   });
+
+
+
+
+
+
+
+
+
 
 document.getElementById("withdraw-btn").addEventListener("click", function (e) {
   e.preventDefault();
@@ -125,8 +140,12 @@ document.getElementById("withdraw-btn").addEventListener("click", function (e) {
   const accountNumber = getInputValue("agent-number");
   const amount = getInputValueNumber("withdraw-number");
   const addPin = getInputValueNumber("withdraw-pin");
-
+  
   const availableBalance = toGetInnerText("available-balance");
+  if(amount <= 0 || amount > availableBalance){
+     alert('Invalid Amount')
+     return
+   }
 
   if (accountNumber.length !== 11) {
     alert("Enter Your valid Account Number");
@@ -140,4 +159,39 @@ document.getElementById("withdraw-btn").addEventListener("click", function (e) {
   const totalNewAvailableBalance = availableBalance - amount;
 
   toSetInnerText(totalNewAvailableBalance);
+
+  const data = {
+        name: "Cash Out",
+        date: new Date().toLocaleTimeString()
+    }
+    transactionsData.push(data)
+    console.log(transactionsData)
 });
+
+
+document.getElementById('transactions-button').addEventListener('click', function(e){
+    const transactionContainer = document.getElementById('transaction-container')
+    transactionContainer.innerText = ""
+
+    for(const data of transactionsData){
+        const div = document.createElement('div')
+        div.innerHTML = `
+         <div class="bg-white rounded-xl p-3 mt-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <div class=" p-3 rounded-full bg-[#f4f5f7]">
+                    <img src="./Payoo-MFS-Resources/assets/wallet1.png" alt="">
+                </div>
+                <div class="ml-3">
+                    <h1>${data.name}</h1>
+                    <p>${data.date}</p>
+                </div>
+            </div>
+            <i class="fa-solid fa-ellipsis-vertical"></i>
+        </div>
+        `
+
+
+        transactionContainer.appendChild(div)
+    }
+
+})
