@@ -2,14 +2,14 @@ document.getElementById('loginButton').addEventListener('click', function(e){
     e.preventDefault();
     const mobileNumber = 8801903168428;
     const pinNumber = 1234;
-    const mobileNumbervalue = document.getElementById('mobile-number').value
-    const mobileNumberValueConverted = parseInt(mobileNumbervalue)
-    const pinNumberValue = document.getElementById('pin-number').value
-    const pinNumberValueConverted = parseInt(pinNumberValue)
+
+    
+    const mobileNumberValue = parseInt(document.getElementById('mobile-number').value)
+    const pinNumberValue = parseInt(document.getElementById('pin-number').value)
+    
 
 
-
-    if(mobileNumberValueConverted === mobileNumber && pinNumberValueConverted === pinNumber){
+    if(mobileNumberValue === mobileNumber && pinNumberValue === pinNumber){
         console.log("All value Matched")
         window.location.href='./home.html'
     }

@@ -9,22 +9,39 @@ document.getElementById('cashout-button').addEventListener('click', function(){
 const validPin = 11992288
 
 
+
+function getInputValueNumber(id){
+    const inputField = parseInt(document.getElementById(id).value)
+    return inputField
+}
+
+
+function getInputValue(id){
+    const inputFieldValue = document.getElementById(id).value
+    return inputFieldValue
+}
+
+
+
 document.getElementById('add-money-btn').addEventListener('click', function(e){
     e.preventDefault()
    
-    const bank = document.getElementById('bank').value
-    const accountNumber = document.getElementById('account-number').value
-    const amount = parseInt(document.getElementById('add-amount').value)
-    const addPin = parseInt(document.getElementById('add-pin').value)
+    const bank = getInputValue('bank')
+    const accountNumber = getInputValue('accounts-number')
+    const addPin = getInputValueNumber('add-pin')
+    const amount = getInputValueNumber('add-amount')
+
 
     const availableBalance = parseInt(document.getElementById('available-balance').innerText);
 
-    if(accountNumber.length < 11){
+    if(accountNumber.length !== 11){
         alert('Enter Your valid Account Number')
         return
     }
+
+
     if(addPin !== validPin){
-        alert("Enter Valid Pin Number")
+        alert("Enter Valid Pin")
         return
     }
 
@@ -56,13 +73,13 @@ document.getElementById('withdraw-btn').addEventListener('click', function(e){
     e.preventDefault();
    
 
-    const accountNumber = document.getElementById('agent-number').value;
-    const amount = parseInt(document.getElementById('withdraw-number').value);
-    const addPin = parseInt(document.getElementById('withdraw-pin').value);
+     const accountNumber = getInputValue('agent-number');
+    const amount = getInputValueNumber('withdraw-number')
+    const addPin = getInputValueNumber('withdraw-pin');
 
     const availableBalance = parseInt(document.getElementById('available-balance').innerText);
 
-    if(accountNumber.length < 11){
+    if(accountNumber.length !== 11){
         alert('Enter Your valid Account Number');
         return;
     }
