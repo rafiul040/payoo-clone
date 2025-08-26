@@ -39,19 +39,19 @@
 
 
     <div class="min-h-[200px] grid grid-cols-3 max-w-lg mx-auto gap-4 p-3">
-        <div id="add-button" class="border-3 border-[#0874F2]  rounded-xl text-center p-3">
+        <div id="add-button" class="form-btn border-2 border-gray-300  rounded-xl text-center p-3">
             <img src="./Payoo-MFS-Resources/assets/wallet1.png" class="mx-auto" alt="">
             <h2>Add Money</h2>
         </div>
-        <div id="cashout-button" class="border-2  border-gray-300 rounded-xl text-center p-3">
+        <div id="cashout-button" class="form-btn border-2  border-gray-300 rounded-xl text-center p-3">
             <img src="./Payoo-MFS-Resources/assets/send1.png" class="mx-auto" alt="">
             <h2>Cash Out</h2>
         </div>
-        <div class="border-2  border-gray-300 rounded-xl  text-center p-3">
+        <div id="transfer-button" class="form-btn border-2  border-gray-300 rounded-xl  text-center p-3">
             <img src="./Payoo-MFS-Resources/assets/money1.png" class="mx-auto" alt="">
             <h2>Transfer Money</h2>
         </div>
-        <div class="border-2 border-gray-300  rounded-xl text-center p-3">
+        <div id="get-bonus" class="form-btn border-2 border-gray-300  rounded-xl text-center p-3">
             <img src="./Payoo-MFS-Resources/assets/bonus1.png" class="mx-auto" alt="">
             <h2>Get Bonus</h2>
         </div>
@@ -69,7 +69,7 @@
 
 
 <div class="all-form-sections max-w-lg mx-auto">
-    <div class="" id="add-money-parent">
+    <div class="form" id="add-money-parent">
         <h1 class="my- font-bold">Add Money</h1>
         <form class="bg-white rounded-2xl p-8">
             <div class="">
@@ -121,7 +121,7 @@
 
 
 
-<div style="display: none;" class="" id="cashout-money">
+<div style="display: none;" class="form" id="cashout-money">
         <h1 class="my- font-bold">Cash Out Money</h1>
         <form class="bg-white rounded-2xl p-8">
             
@@ -157,8 +157,16 @@
         </form>
     </div>
 
+<!-- Transfer Money -->
+<div class="form" id="transfer-money-parent" style="display: none;">
+    <h1 class="my-5 font-bold">Transfer Money</h1>
 
+</div>
+<!-- Get Money -->
+<div class="form" id="get-bonus-parent" style="display: none;">
+    <h1 class="my-5 font-bold">Get Bonus</h1>
 
+</div>
 
 
 </div>
